@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Modelo en Pantalla Completa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body, html {
             margin: 0;
@@ -12,6 +13,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #f0f0f0; /* Fondo neutro */
         }
         #model-container {
             width: 100vw;
@@ -27,14 +29,18 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const iframe = document.getElementById("model-container");
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) { // Firefox
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari y Opera
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) { // IE/Edge
-                iframe.msRequestFullscreen();
+
+            // Evita intentar entrar automáticamente en pantalla completa en dispositivos móviles
+            if (window.innerWidth > 800) { // Solo en pantallas más grandes
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) { // Firefox
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari y Opera
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { // IE/Edge
+                    iframe.msRequestFullscreen();
+                }
             }
         });
     </script>
