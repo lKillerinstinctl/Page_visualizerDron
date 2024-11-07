@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
     <meta charset="UTF-8">
     <title>Modelo en Pantalla Completa</title>
     <style>
@@ -10,32 +9,43 @@
             padding: 0;
             overflow: hidden;
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         #model-container {
             width: 100%;
-            height: 100%;
+            height: 80%;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <iframe id="model-container" src="https://sketchfab.com/3d-models/robot-marino-3606fab6aef84736a0e139613165c608" </iframe>
+    <!-- Iframe del modelo en modo embed -->
+    <iframe id="model-container" src="https://sketchfab.com/models/3606fab6aef84736a0e139613165c608/embed?autostart=1" allow="fullscreen"></iframe>
+    
+    <!-- Botón para activar la pantalla completa -->
+    <button onclick="activateFullscreen()">Ver en Pantalla Completa</button>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        function activateFullscreen() {
             const iframe = document.getElementById("model-container");
             if (iframe.requestFullscreen) {
                 iframe.requestFullscreen();
             } else if (iframe.mozRequestFullScreen) { // Firefox
                 iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari y Opera
                 iframe.webkitRequestFullscreen();
             } else if (iframe.msRequestFullscreen) { // IE/Edge
                 iframe.msRequestFullscreen();
             }
-        });
+        }
     </script> 
-
-      
-
-
 </body>
 </html>
