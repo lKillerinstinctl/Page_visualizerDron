@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modelo en Pantalla Completa</title>
     <style>
         body, html {
@@ -13,55 +12,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
         }
-
         #model-container {
-            width: 100%;
+            width: 100vw;
             height: 100vh;
             border: none;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            color: #fff;
-            background-color: #0073e6;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #005bb5;
-        }
-
-        /* Ajuste adicional para dispositivos móviles */
-        @media (max-width: 768px) {
-            #model-container {
-                height: 80vh;
-            }
-
-            button {
-                font-size: 14px;
-                padding: 10px 20px;
-            }
         }
     </style>
 </head>
 <body>
     <!-- Iframe del modelo en modo embed -->
     <iframe id="model-container" src="https://sketchfab.com/models/3606fab6aef84736a0e139613165c608/embed?autostart=1" allow="fullscreen"></iframe>
-    
-    <!-- Botón para activar la pantalla completa -->
-    <button onclick="activateFullscreen()">Ver en Pantalla Completa</button>
 
     <script>
-        function activateFullscreen() {
+        document.addEventListener("DOMContentLoaded", function () {
             const iframe = document.getElementById("model-container");
             if (iframe.requestFullscreen) {
                 iframe.requestFullscreen();
@@ -71,10 +35,8 @@
                 iframe.webkitRequestFullscreen();
             } else if (iframe.msRequestFullscreen) { // IE/Edge
                 iframe.msRequestFullscreen();
-            } else {
-                alert("Tu navegador no soporta el modo de pantalla completa.");
             }
-        }
-    </script> 
+        });
+    </script>
 </body>
 </html>
