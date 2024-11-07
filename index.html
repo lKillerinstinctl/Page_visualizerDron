@@ -2,43 +2,57 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Modelo en Pantalla Completa</title>
+    <title>Proyecto Wall-E</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
             height: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
-            background-color: #f0f0f0;
+            align-items: center;
+            background-color: #5f4a7d;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
         }
         #model-container {
             width: 100%;
-            height: 80%;
-            border: none;
+            height: 400px;
+            border: 3px solid white;
+            border-radius: 10px;
         }
         #fullscreen-button {
-            margin-top: 10px;
+            margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #4CAF50;
+            background-color: #8e5dc7;
             color: white;
             border: none;
             border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
         }
     </style>
 </head>
 <body>
-    <!-- Iframe del modelo en modo embed con parámetros personalizados -->
-    <iframe id="model-container" src="https://sketchfab.com/models/3606fab6aef84736a0e139613165c608/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0" allow="fullscreen"></iframe>
-
-    <!-- Botón para activar la pantalla completa -->
-    <button id="fullscreen-button" onclick="activateFullscreen()">Ver en Pantalla Completa</button>
+    <div class="container">
+        <h1>PROYECTO WALL-E</h1>
+        <iframe id="model-container" src="https://sketchfab.com/models/3606fab6aef84736a0e139613165c608/embed?autostart=1&ui_infos=0&ui_controls=0&ui_stop=0" allow="fullscreen"></iframe>
+        <button id="fullscreen-button" onclick="activateFullscreen()">PANTALLA COMPLETA</button>
+    </div>
 
     <script>
         function activateFullscreen() {
@@ -53,6 +67,6 @@
                 iframe.msRequestFullscreen();
             }
         }
-    </script>
+    </script> 
 </body>
 </html>
