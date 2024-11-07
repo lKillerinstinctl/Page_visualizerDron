@@ -28,15 +28,14 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            max-width: 100%;
+            max-width: 550px;
             width: 100%;
-            height: 100%;
         }
 
         /* Estilos del título */
         h1 {
             color: #FFFFFF;
-            font-size: 24px;
+            font-size: 30px;
             font-weight: bold;
             letter-spacing: 5%;
             margin-bottom: 20px;
@@ -46,28 +45,24 @@
         #model-container {
             width: 100%;
             height: 60vh;
-            max-width: 550px;
-            max-height: 650px;
             border: 2px solid #FFFFFF;
             border-radius: 10px;
             overflow: hidden;
-            object-fit: contain;
         }
 
         /* Estilos del botón de pantalla completa */
         .fullscreen-btn {
             background-color: #5D3964;
             color: #FFFFFF;
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
             letter-spacing: 3px;
             border: none;
             border-radius: 5px;
-            padding: 10px;
+            padding: 5px;
             cursor: pointer;
             margin-top: 20px;
             width: 80%;
-            max-width: 300px;
         }
 
         .fullscreen-btn:hover {
@@ -77,25 +72,8 @@
         /* Ajustes para pantallas pequeñas */
         @media (max-width: 600px) {
             h1 {
-                font-size: 20px;
+                font-size: 24px;
                 letter-spacing: 2%;
-            }
-
-            #model-container {
-                height: 55vh;
-            }
-
-            .fullscreen-btn {
-                font-size: 14px;
-                padding: 8px;
-                width: 90%;
-            }
-        }
-
-        /* Ajustes para pantallas muy pequeñas */
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 18px;
             }
 
             #model-container {
@@ -103,8 +81,25 @@
             }
 
             .fullscreen-btn {
-                font-size: 12px;
-                padding: 6px;
+                font-size: 16px;
+                padding: 10px;
+                width: 90%;
+            }
+        }
+
+        /* Ajustes para pantallas aún más pequeñas */
+        @media (max-width: 400px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            #model-container {
+                height: 45vh;
+            }
+
+            .fullscreen-btn {
+                font-size: 14px;
+                padding: 8px;
                 width: 100%;
             }
         }
