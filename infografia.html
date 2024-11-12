@@ -10,21 +10,78 @@
             margin: 0;
             padding: 0;
             height: 100%;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: #2C2A33;
+            font-family: Arial, sans-serif;
         }
 
-        img {
+        /* Contenedor principal con scroll */
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Imagen de la infografía */
+        .infografia {
             max-width: 100%;
             max-height: 100%;
+            transition: transform 0.3s ease; /* Efecto de transición suave en zoom */
+        }
+
+        /* Slider de zoom */
+        .zoom-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
             border-radius: 10px;
+        }
+
+        .zoom-controls input[type="range"] {
+            width: 200px;
+        }
+
+        .zoom-level {
+            color: #FFFFFF;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <!-- Aquí coloca la imagen de la infografía -->
-    <img src="Infografía Historia Robótica Moderno Multicolor.jpg" alt="Infografía del Proyecto">
+    <div class="container">
+        <!-- Imagen de la infografía con clase para el zoom -->
+        <img src="Infografía Historia Robótica Moderno Multicolor.jpg" alt="Infografía del Proyecto" class="infografia" id="infografia">
+    </div>
+
+    <!-- Controles de zoom -->
+    <div class="zoom-controls">
+        <span class="zoom-level" id="zoom-level">100%</span>
+        <input type="range" id="zoom-slider" min="50" max="200" value="100" step="10">
+    </div>
+
+    <script>
+        const infografia = document.getElementById("infografia");
+        const zoomSlider = document.getElementById("zoom-slider");
+        const zoomLevel = document.getElementById("zoom-level");
+
+        // Ajustar el zoom según el valor del slider
+        zoomSlider.addEventListener("input", function () {
+            const zoom = zoomSlider.value;
+            infografia.style.transform = `scale(${zoom / 100})`;
+            zoomLevel.textContent = `${zoom}%`;
+        });
+    </script>
 </body>
 </html>
