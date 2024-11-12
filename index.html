@@ -13,35 +13,65 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f0f0f0; /* Fondo neutro */
+            background-color: #f0f0f0;
+        }
+        .slider-container {
+            display: flex;
+            width: 200vw; /* Doble de ancho para dos ventanas */
+            height: 100vh;
+            transition: transform 0.5s ease;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         #model-container {
             width: 100vw;
             height: 100vh;
             border: none;
         }
+        #pdf-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .pdf-page {
+            max-width: 90%;
+            margin: 10px;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
-    <!-- Iframe del modelo en modo embed -->
-    <iframe id="model-container" src="https://sketchfab.com/models/3606fab6aef84736a0e139613165c608/embed?autostart=1" allow="fullscreen"></iframe>
+    <div class="slider-container" id="sliderContainer">
+        <!-- Primera ventana: Modelo 3D -->
+        <div class="slide">
+            <iframe id="model-container" src="https://sketchfab.com/models/3606fab6aef84736a0e139613165c608/embed?autostart=1" allow="fullscreen"></iframe>
+        </div>
+        <!-- Segunda ventana: Contenido del PDF -->
+        <div class="slide" id="pdf-content">
+            <img src="pdf_page1.jpg" alt="Infografía Página 1" class="pdf-page">
+            <img src="pdf_page2.jpg" alt="Infografía Página 2" class="pdf-page">
+            <!-- Agregar más imágenes según las páginas del PDF -->
+        </div>
+    </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const iframe = document.getElementById("model-container");
+        let currentSlide = 0;
+        const sliderContainer = document.getElementById("sliderContainer");
 
-            // Evita intentar entrar automáticamente en pantalla completa en dispositivos móviles
-            if (window.innerWidth > 800) { // Solo en pantallas más grandes
-                if (iframe.requestFullscreen) {
-                    iframe.requestFullscreen();
-                } else if (iframe.mozRequestFullScreen) { // Firefox
-                    iframe.mozRequestFullScreen();
-                } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari y Opera
-                    iframe.webkitRequestFullscreen();
-                } else if (iframe.msRequestFullscreen) { // IE/Edge
-                    iframe.msRequestFullscreen();
-                }
+        // Escucha el deslizamiento o el evento de tecla derecha/izquierda
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "ArrowRight") {
+                currentSlide = Math.min(currentSlide + 1, 1); // Máximo hasta la segunda ventana
+            } else if (event.key === "ArrowLeft") {
+                currentSlide = Math.max(currentSlide - 1, 0); // Mínimo hasta la primera ventana
             }
+            sliderContainer.style.transform = `translateX(-${currentSlide * 100}vw)`;
         });
     </script>
 </body>
