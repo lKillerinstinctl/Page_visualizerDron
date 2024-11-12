@@ -21,7 +21,7 @@
         }
 
         .container {
-            text-align: center;
+            text-align: left; /* Cambiar de center a left */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -34,9 +34,17 @@
             color: #FFFFFF;
             font-size: 32px;
             font-weight: bold;
-            letter-spacing: 5%;
+            letter-spacing: 3px; /* Ajuste de espaciado entre letras */
+            margin-bottom: 10px; /* Reducir margen para acercar a "PROTOTIPO" */
+        }
+
+        h2 {
+            color: #B0C4DE; /* Color más sutil para el texto de "PROTOTIPO" */
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: 2px; /* Ajuste de espaciado entre letras */
+            margin-top: 0;
             margin-bottom: 20px;
-            align-items: left;
         }
 
         #model-container {
@@ -48,7 +56,7 @@
         }
 
         .fullscreen-btn {
-            background-color: linear-gradient(to bottom left, #D3E8F4 0%, #D2C7F7 100%);
+            background: linear-gradient(to bottom left, #D3E8F4, #D2C7F7);
             color: #1E1E1E;
             font-size: 20px;
             font-weight: bold;
