@@ -13,18 +13,43 @@
             align-items: center;
             justify-content: center;
             background-color: #2C2A33;
+            flex-direction: column;
         }
 
         img {
             max-width: 100%;
-            max-height: 100%;
+            max-height: 80%;
             border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <!-- Aquí coloca la imagen de la infografía -->
     <img src="INFOGRAFIA PROYECTO.jpg" alt="Infografía del Proyecto">
+
+    <!-- Botón de descarga del PDF -->
+    <a href="https://<tu-nombre-de-usuario>.github.io/<nombre-del-repositorio>/PLANO_DE_DRON_PRESENTACION.pdf" 
+       class="download-btn" download>
+       Descargar Planos
+    </a>
 
     <script>
         /* Detectar deslizamiento y redirigir */
