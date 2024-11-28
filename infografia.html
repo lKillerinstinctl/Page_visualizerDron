@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Infografía del Proyecto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #0F254E;
+            flex-direction: column;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 90%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            background: linear-gradient(to bottom left, #D3E8F4, #D2C7F7);
+            color: #1E1E1E;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .view-btn:hover {
+            background-color: #7A6A7B;
+        }
+    </style>
+</head>
+<body>
+    <!-- Aquí coloca la imagen de la infografía -->
+    <img src="INFOGRAFIA PROYECTO.jpg" alt="Infografía del Proyecto">
+
+    <!-- Botón para ver los planos en Google Drive -->
+    <a href="https://drive.google.com/file/d/1AHu7GT7CzR73opG21XEyA6VSSTs40dK6/view" 
+       class="view-btn" target="_blank">
+       VER PLANOS
+    </a>
+
+    <script>
+        /* Detectar deslizamiento y redirigir */
+        let startX = 0;
+        let startY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            let endX = e.changedTouches[0].clientX;
+            let endY = e.changedTouches[0].clientY;
+            let diffX = endX - startX;
+            let diffY = endY - startY;
+
+            if (Math.abs(diffX) > Math.abs(diffY) && diffX > 50) { // Deslizar a la derecha
+                window.location.href = "index.html"; // Cambia a la URL de la visualización del dron
+            }
+        });
+    </script>
+</body>
+</html>

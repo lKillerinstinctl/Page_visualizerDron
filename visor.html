@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Plano del Dron Marino</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2C2A33;
+        }
+        #pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="pdf-viewer"></canvas>
+
+    <!-- Incluir PDF.js desde un CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+
+    <script>
+        const url = 'PLANO DE DRON PRESENTACION_CABINAS.pdf'; // Cambia esto a la ruta de tu PDF
+        const pdfCanvas = document.getElementById('pdf-viewer');
+        const context = pdfCanvas.getContext('2d');
+        let pdfDoc = null;
+        let pageNum = 1;
+
+        // Cargar PDF
+        pdfjsLib.getDocument(url).promise.then(pdf => {
+            pdfDoc = pdf;
+            renderPage(pageNum);
+        });
+
+        function renderPage(num) {
+            pdfDoc.getPage(num).then(page => {
+                const viewport = page.getViewport({ scale: 1.5 });
+                pdfCanvas.width = viewport.width;
+                pdfCanvas.height = viewport.height;
+
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+            });
+        }
+
+        // Detectar deslizamiento para cambiar de página
+        let startX = 0;
+        document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        document.addEventListener('touchend', e => {
+            const endX = e.changedTouches[0].clientX;
+            const diffX = endX - startX;
+
+            if (diffX > 50 && pageNum > 1) { // Deslizar a la derecha para página anterior
+                pageNum--;
+                renderPage(pageNum);
+            } else if (diffX < -50 && pageNum < pdfDoc.numPages) { // Deslizar a la izquierda para página siguiente
+                pageNum++;
+                renderPage(pageNum);
+            }
+        });
+    </script>
+</body>
+</html>
